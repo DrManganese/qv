@@ -25,7 +25,7 @@ pub struct Args {
 
     /// Rows to return
     #[clap(short, long, default_value_t = 10)]
-    pub limit: usize,
+    limit: usize,
 
     /// Optional AWS Profile to use
     #[clap(short, long)]
@@ -82,6 +82,14 @@ impl Args {
 
         let globbing_path = GlobbingPath::parse(&data_location)?;
         Ok(globbing_path)
+    }
+
+    pub fn get_limit(&self) -> usize {
+        if self.schema {
+            usize::MAX
+        } else {
+            self.limit
+        }
     }
 }
 

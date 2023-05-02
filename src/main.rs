@@ -26,7 +26,7 @@ async fn main() -> Result<()> {
 
     let query = &args.get_query();
     let df = ctx.sql(query).await?;
-    df.show_limit(args.limit).await?;
+    df.show_limit(args.get_limit()).await?;
 
     Ok(())
 }
